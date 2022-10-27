@@ -1,17 +1,7 @@
-const mysql = require('mysql')
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'dbuser',
-  password: 's3kreee7',
-  database: 'my_db'
-})
+const mongoose = require("mongoose");
 
-connection.connect()
+const DbUrl = "mongodb://localhost:27017/SushiShop"
 
-connection.query('SELECT 1 + 1 AS solution', (err, rows, fields) => {
-  if (err) throw err
-
-  console.log('The solution is: ', rows[0].solution)
-})
-
-connection.end()
+mongoose.connect(DbUrl, {useNewUrlParser: true, useUnifiedTopology: true })
+.then(res => console.log(`Connexion Succesful`))
+.catch(err => console.log(`Error in DB connection ${err}`));
